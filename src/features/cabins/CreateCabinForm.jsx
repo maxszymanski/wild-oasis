@@ -11,7 +11,7 @@ import FormRow from '../../ui/FormRow'
 import { useCreateCabin } from './useCreateCabin'
 import { useEditCabin } from './useEditCabin'
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, onCloseModal }) {
     //reset resetuje cały formularz, getValues - funkcja za pomocą której odwołujemy sie do value z innego inputa gdy chcemy go np uzyć do validacji
     const { id: editId, ...editValue } = cabinToEdit
     const isEditSession = Boolean(editId) ///jeśli jest editId czyli edutujemy to jest true
@@ -31,7 +31,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
             editCabin(
                 { newCabinData: { ...newCabin, image }, id: editId },
                 {
-                    onSuccess: () => reset(),
+                    onSuccess: () => {
+                        reset()
+                        onCloseModal?.()
+                    },
                 }
             )
         else
@@ -40,6 +43,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
                 {
                     onSuccess: () => {
                         reset()
+                        onCloseModal?.()
                     },
                     // możemy odwołać się do onSuccess równiez podczas wywyołuania funckcji
                 }
@@ -47,7 +51,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)}>
+        <Form
+            onSubmit={handleSubmit(onSubmit)}
+            type={onCloseModal ? 'modal' : 'regular'}
+        >
             <FormRow label="Cabin name" error={errors?.name?.message}>
                 <Input
                     type="text"
@@ -138,6 +145,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
                     disabled={isCreating || isEditing}
                     $variation="secondary"
                     type="reset"
+                    onClick={() => onCloseModal?.()} // optionalchaning - jesłi nie ma funkcji onCloseModal to ona sie nie wywoła i nie będzie błędu jeśli będziemy chcieli użyć ponownie formularza
                 >
                     Cancel
                 </Button>

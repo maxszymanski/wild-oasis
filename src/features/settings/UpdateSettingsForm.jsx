@@ -11,7 +11,7 @@ function UpdateSettingsForm() {
         minBookingLength,
         maxBookingLength,
         maxGuestsPerBooking,
-        breckfastPrice: breakfastPrice,
+        breakfastPrice,
     } = settings
     const { isUpdating, updateSetting } = useUpdateSetting()
     if (isLoading) return <Spinner />
