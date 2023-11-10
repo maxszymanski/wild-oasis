@@ -100,7 +100,7 @@ function Window({ children, name }) {
     //     document.addEventListener('click', handleClick, true) // dodajemy na koncu true i wtedy addEven nie działa do gory tylko w dól i nasłuchuje tylko jesli modal jest otwarty
     //     return () => document.removeEventListener('click', handleClick)
     // }, [setOpenName])
-    const { ref } = useCloseOutsideModal(setOpenName)
+    const ref = useCloseOutsideModal(setOpenName)
 
     if (name !== openName) return null
     return createPortal(

@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Button from './Button'
 import Heading from './Heading'
-import { useMoveBack } from '../hooks/useMoveBack'
 
 const StyledConfirmDelete = styled.div`
     width: 40rem;

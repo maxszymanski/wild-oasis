@@ -4,6 +4,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import GlobalStyles from './styles/GlobalStyles'
 import Dashboard from './pages/Dashboard'
 import Bookings from './pages/Bookings'
+import Booking from './pages/Booking'
 import Cabins from './pages/Cabins'
 import Users from './pages/Users'
 import Settings from './pages/Settings'
@@ -12,6 +13,7 @@ import Login from './pages/Login'
 import PageNotFound from './pages/PageNotFound'
 import AppLayout from './ui/AppLayout'
 import { Toaster } from 'react-hot-toast'
+import Checkin from './pages/Checkin'
 
 // towrzymy nowy React Query. queries: po jakim czasie ma się aktualizować
 const queryClient = new QueryClient({
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
             {
                 path: '/bookings',
                 element: <Bookings />,
+            },
+            {
+                path: '/bookings/:bookingId',
+                element: <Booking />,
+            },
+            {
+                path: '/checkin/:bookingId',
+                element: <Checkin />,
             },
             {
                 path: '/cabins',
