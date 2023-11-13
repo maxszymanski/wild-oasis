@@ -14,6 +14,7 @@ import PageNotFound from './pages/PageNotFound'
 import AppLayout from './ui/AppLayout'
 import { Toaster } from 'react-hot-toast'
 import Checkin from './pages/Checkin'
+import ProtectedRoute from './ui/ProtectedRoute'
 
 // towrzymy nowy React Query. queries: po jakim czasie ma się aktualizować
 const queryClient = new QueryClient({
@@ -24,7 +25,11 @@ const queryClient = new QueryClient({
 
 const router = createBrowserRouter([
     {
-        element: <AppLayout />,
+        element: (
+            <ProtectedRoute>
+                <AppLayout />
+            </ProtectedRoute>
+        ),
         children: [
             {
                 path: '/',

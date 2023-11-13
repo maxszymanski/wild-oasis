@@ -1,41 +1,68 @@
-import { useState } from "react";
-import Button from "../../ui/Button";
-import Form from "../../ui/Form";
-import Input from "../../ui/Input";
-import FormRowVertical from "../../ui/FormRowVertical";
+import { useEffect, useState } from 'react'
+import Button from '../../ui/Button'
+import Form from '../../ui/Form'
+import Input from '../../ui/Input'
+import SpinnerMini from '../../ui/SpinnerMini'
+import FormRowVertical from '../../ui/FormRowVertical'
+import useLogin from './useLogin'
+import { useUser } from './useUser'
+import { useNavigate } from 'react-router-dom'
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('max@example.com')
+    const [password, setPassword] = useState('example')
+    const { login, isLoading } = useLogin()
+    const navigate = useNavigate()
+    const { isAuthenticated, isLoading: userLoading } = useUser()
 
-  function handleSubmit() {}
+    useEffect(() => {
+        if (isAuthenticated && !userLoading)
+            navigate('/dashboard', { replace: true })
+    }, [isAuthenticated, isLoading, navigate])
 
-  return (
-    <Form onSubmit={handleSubmit}>
-      <FormRowVertical label="Email address">
-        <Input
-          type="email"
-          id="email"
-          // This makes this form better for password managers
-          autoComplete="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </FormRowVertical>
-      <FormRowVertical label="Password">
-        <Input
-          type="password"
-          id="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </FormRowVertical>
-      <FormRowVertical>
-        <Button size="large">Login</Button>
-      </FormRowVertical>
-    </Form>
-  );
+    function handleSubmit(e) {
+        e.preventDefault()
+        if (!email || !password) return
+        login(
+            { email, password },
+            {
+                onSettled: () => {
+                    setEmail(''), setPassword('')
+                },
+            }
+        )
+    }
+
+    return (
+        <Form onSubmit={handleSubmit}>
+            <FormRowVertical label="Email address">
+                <Input
+                    type="email"
+                    id="email"
+                    // This makes this form better for password managers
+                    autoComplete="username"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={isLoading}
+                />
+            </FormRowVertical>
+            <FormRowVertical label="Password">
+                <Input
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
+                />
+            </FormRowVertical>
+            <FormRowVertical>
+                <Button $size="large" disabled={isLoading}>
+                    {!isLoading ? 'Login' : <SpinnerMini />}
+                </Button>
+            </FormRowVertical>
+        </Form>
+    )
 }
 
-export default LoginForm;
+export default LoginForm
