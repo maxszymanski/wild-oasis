@@ -41,7 +41,7 @@ function Filter({ filterField, options }) {
     function handleClick(value) {
         //ustawiamy jaki ma byc search params URL dla sortowania i strony
         searchParams.set(filterField, value)
-        searchParams.set('page', 1)
+        if (filterField === 'status') searchParams.set('page', 1)
         setSearchParams(searchParams)
     }
     return (

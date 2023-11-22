@@ -52,7 +52,7 @@ function SignupForm() {
                     {...register('password', {
                         required: 'This field is required',
                         minLength: {
-                            value: 8,
+                            value: 6,
                             message:
                                 'Password needs a minimium of 6 characters',
                         },
@@ -86,6 +86,7 @@ function SignupForm() {
                     $variation="secondary"
                     type="reset"
                     disabled={isLoading}
+                    onClick={reset}
                 >
                     Cancel
                 </Button>

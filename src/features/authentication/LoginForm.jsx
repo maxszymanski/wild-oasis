@@ -9,8 +9,8 @@ import { useUser } from './useUser'
 import { useNavigate } from 'react-router-dom'
 
 function LoginForm() {
-    const [email, setEmail] = useState('max@example.com')
-    const [password, setPassword] = useState('example')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const { login, isLoading } = useLogin()
     const navigate = useNavigate()
     const { isAuthenticated, isLoading: userLoading } = useUser()

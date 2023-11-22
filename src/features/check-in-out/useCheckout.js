@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 
 export function useCheckout() {
     const queryClient = useQueryClient()
-    const navigate = useNavigate()
     const {
         data,
         mutate: checkout,

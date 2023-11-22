@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-export function useCloseOutsideModal(close) {
+export function useCloseOutsideModal(close, listenCapturing = true) {
     const ref = useRef()
     useEffect(() => {
         function handleClick(e) {
@@ -9,8 +9,9 @@ export function useCloseOutsideModal(close) {
             }
         }
 
-        document.addEventListener('click', handleClick, true) // dodajemy na koncu true i wtedy addEven nie działa do gory tylko w dól i nasłuchuje tylko jesli modal jest otwarty
-        return () => document.removeEventListener('click', handleClick)
-    }, [close])
+        document.addEventListener('click', handleClick, listenCapturing) // dodajemy na koncu true i wtedy addEven nie działa do gory tylko w dól i nasłuchuje tylko jesli modal jest otwarty
+        return () =>
+            document.removeEventListener('click', handleClick, listenCapturing)
+    }, [close, listenCapturing])
     return ref
 }

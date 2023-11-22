@@ -15,6 +15,9 @@ import AppLayout from './ui/AppLayout'
 import { Toaster } from 'react-hot-toast'
 import Checkin from './pages/Checkin'
 import ProtectedRoute from './ui/ProtectedRoute'
+import { DarkModeProvider } from './context/DarkModeContext'
+import { ErrorBoundary } from 'react-error-boundary'
+import ErrorFallback from './ui/ErrorFallback'
 
 // towrzymy nowy React Query. queries: po jakim czasie ma się aktualizować
 const queryClient = new QueryClient({
@@ -26,9 +29,14 @@ const queryClient = new QueryClient({
 const router = createBrowserRouter([
     {
         element: (
-            <ProtectedRoute>
-                <AppLayout />
-            </ProtectedRoute>
+            <ErrorBoundary
+                FallbackComponent={ErrorFallback}
+                onReset={() => window.location.replace('/')}
+            >
+                <ProtectedRoute>
+                    <AppLayout />
+                </ProtectedRoute>
+            </ErrorBoundary>
         ),
         children: [
             {
@@ -81,31 +89,33 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <QueryClientProvider client={queryClient}>
-            <GlobalStyles />
-            <RouterProvider router={router} />
-            <ReactQueryDevtools initialIsOpen={false} />
-            <Toaster
-                position="top-center"
-                gutter={12}
-                containerStyle={{ margin: '8px' }}
-                toastOptions={{
-                    success: {
-                        duration: 3000,
-                    },
-                    error: {
-                        duration: 5000,
-                    },
-                    style: {
-                        fontSize: '16px',
-                        maxWidth: '500px',
-                        padding: '16px 24px',
-                        backgroundColor: 'var(--color-grey-0)',
-                        Color: 'var(--color-grey-700)',
-                    },
-                }}
-            />
-        </QueryClientProvider>
+        <DarkModeProvider>
+            <QueryClientProvider client={queryClient}>
+                <GlobalStyles />
+                <RouterProvider router={router} />
+                <ReactQueryDevtools initialIsOpen={false} />
+                <Toaster
+                    position="top-center"
+                    gutter={12}
+                    containerStyle={{ margin: '8px' }}
+                    toastOptions={{
+                        success: {
+                            duration: 3000,
+                        },
+                        error: {
+                            duration: 5000,
+                        },
+                        style: {
+                            fontSize: '16px',
+                            maxWidth: '500px',
+                            padding: '16px 24px',
+                            backgroundColor: 'var(--color-grey-0)',
+                            Color: 'var(--color-grey-700)',
+                        },
+                    }}
+                />
+            </QueryClientProvider>
+        </DarkModeProvider>
     )
 }
 
