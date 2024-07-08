@@ -1,2 +1,3 @@
-Login: max@example.com
+Login: max@example.com 
+
 Password: example
