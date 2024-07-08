@@ -39,8 +39,7 @@ function LoginForm() {
                 <Input
                     type="email"
                     id="email"
-                    // This makes this form better for password managers
-                    // autoComplete="username"
+                    defaultValue="max@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
@@ -50,7 +49,7 @@ function LoginForm() {
                 <Input
                     type="password"
                     id="password"
-                    // autoComplete="current-password"
+                    defaultValue="example"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isLoading}
