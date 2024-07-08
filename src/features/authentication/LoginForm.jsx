@@ -17,7 +17,7 @@ function LoginForm() {
 
     useEffect(() => {
         if (isAuthenticated && !userLoading)
-            navigate('/dashboard', { replace: true })
+            navigate('/profile', { replace: true })
     }, [isAuthenticated, isLoading, navigate])
 
     function handleSubmit(e) {
@@ -40,7 +40,7 @@ function LoginForm() {
                     type="email"
                     id="email"
                     // This makes this form better for password managers
-                    autoComplete="username"
+                    // autoComplete="username"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
@@ -50,7 +50,7 @@ function LoginForm() {
                 <Input
                     type="password"
                     id="password"
-                    autoComplete="current-password"
+                    // autoComplete="current-password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isLoading}

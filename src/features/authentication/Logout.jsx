@@ -6,7 +6,7 @@ import SpinnerMini from '../../ui/SpinnerMini'
 import ButtonHoverInfo from '../../ui/ButtonHoverInfo'
 
 function Logout() {
-    const { logout, isLogingOut } = useLogout()
+    const { logout, isLogingout } = useLogout()
     return (
         <>
             <ButtonIcon
@@ -15,7 +15,7 @@ function Logout() {
                 onMouseEnter={handleClick}
                 onMouseLeave={() => setPosition(null)}
             >
-                {!isLogingOut ? <HiArrowRightOnRectangle /> : <SpinnerMini />}
+                {!isLogingout ? <HiArrowRightOnRectangle /> : <SpinnerMini />}
             </ButtonIcon>
             {position && (
                 <ButtonHoverInfo position={{ x: position?.x, y: position?.y }}>

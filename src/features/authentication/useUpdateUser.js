@@ -7,7 +7,7 @@ export function useUpdateUser() {
     const { mutate: updateUser, isLoading: isUpdating } = useMutation({
         mutationFn: updateCurrentUser,
         onSuccess: () => {
-            toast.success('User successfully updated')
+            toast.success('Profil został zaaktualizowany')
             queryClient.invalidateQueries({
                 // gdy funkcja dodawania się powiedzie nakazujemy wywołać invalidate dla queryKey: 'user i się odświeża
                 queryKey: ['user'],
