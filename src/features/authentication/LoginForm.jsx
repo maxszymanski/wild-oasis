@@ -9,8 +9,8 @@ import { useUser } from './useUser'
 import { useNavigate } from 'react-router-dom'
 
 function LoginForm() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('max@example.com')
+    const [password, setPassword] = useState('example')
     const { login, isLoading } = useLogin()
     const navigate = useNavigate()
     const { isAuthenticated, isLoading: userLoading } = useUser()
@@ -39,7 +39,6 @@ function LoginForm() {
                 <Input
                     type="email"
                     id="email"
-                    defaultValue="max@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={isLoading}
@@ -49,7 +48,6 @@ function LoginForm() {
                 <Input
                     type="password"
                     id="password"
-                    defaultValue="example"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isLoading}
