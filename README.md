@@ -1,4 +1,4 @@
-Demo: https://bookings-wild.netlify.app/dashboard
+Demo: https://bookings-wild.netlify.app/dashboard?last=90
 
 Login: max@example.com 
 
