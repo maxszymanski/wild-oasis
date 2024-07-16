@@ -21,7 +21,7 @@ Password: example
 - [Contact](#contact)
 
 
-##The application allows
+## The application allows
 
 - Check-in and check-out of guests
 - Confirmation of reservation date
