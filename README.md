@@ -13,12 +13,14 @@ Login: max@exaple.com
 Password: example
 
 
+
 ## Table of Contents
 
 - [The application allows](#the-application-allows)
 - [Technologies Used](#technologies-used)
 - [License](#license)
 - [Contact](#contact)
+
 
 
 ## The application allows
@@ -31,6 +33,7 @@ Password: example
 - Change prices and room availability
 - Add new users to manage application
 - Edit user data, password and avatar
+
 
 
 ## Technologies Used
@@ -46,6 +49,7 @@ Password: example
 - [![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)](https://react-hook-form.com/)
   
 - [![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react%20query&logoColor=white)](https://tanstack.com/query/latest)
+
   
 
 ## Contact
