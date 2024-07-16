@@ -13,20 +13,21 @@ Login: max@exaple.com
 Password: example
 
 
+## Load Sample Data
+
+- Click the "Upload All" button to load sample data.
+- Refresh the page to view the data.
+
+
 
 ## Table of Contents
 
-- [Load sample data](#load-sample-data)
+
 - [The application allows](#the-application-allows)
 - [Technologies Used](#technologies-used)
 - [License](#license)
 - [Contact](#contact)
 
-
-## Load Sample Data
-
-- Click the "Upload All" button to load sample data.
-- Refresh the page to view the data.
 
 
 ## The application allows
